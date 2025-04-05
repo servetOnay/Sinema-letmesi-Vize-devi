@@ -6,25 +6,15 @@ public class Main {
     public static void main(String[] args) {
 
         String[] filmAdi = new String[10];
-        int[] filmSureleri = new int[10];
+        short[] filmSureleri = new short[10];
         String[] filmTurleri = new String[10];
-        int filmSayisi = 0;
+        byte filmSayisi = 0;
 
         String[] musteriler = new String[20];
         String[] musteriMailleri = new String[20];
-        int musteriSayisi = 0;
+        byte musteriSayisi = 0;
 
         String[][] biletler = new String[20][10];
-
-        for (int i = 0; i < 20; i++) {
-
-            for (int k = 0; k < 10; k++) {
-
-                biletler[i][k] = "bos";
-            }
-
-
-        }
 
         Scanner giris = new Scanner(System.in);
 
@@ -51,7 +41,7 @@ public class Main {
                     filmAdi[filmSayisi] = giris.nextLine();
 
                     System.out.print("Film süresi: ");
-                    filmSureleri[filmSayisi] = giris.nextInt();
+                    filmSureleri[filmSayisi] = giris.nextShort();
                     giris.nextLine();
 
                     System.out.print("Film türü: ");
@@ -90,7 +80,7 @@ public class Main {
                     }
 
                     System.out.print("Müşteri numarası: ");
-                    int musteriNum = giris.nextInt();
+                    byte musteriNum = giris.nextByte();
 
                     // Film listesi
                     System.out.println("Filmler:");
@@ -99,10 +89,10 @@ public class Main {
                     }
 
                     System.out.print("Film numarası: ");
-                    int filmNum = giris.nextInt();
+                    byte filmNum = giris.nextByte();
                     giris.nextLine();
 
-                    // Kontrol
+
                     if (musteriNum <= musteriSayisi && filmNum >= 0 && filmNum <= filmSayisi) {
                         biletler[musteriNum][filmNum] = filmAdi[filmNum];
                         System.out.println("Bilet başarıyla oluşturuldu.");
@@ -133,20 +123,16 @@ public class Main {
                     for (int k = 0; k < filmSayisi; k++) {
 
 
-                        if (biletler[i][k].equals("bos")) {
-                            System.out.println(musteriler[i] + " --> Bilet tanımlanmamış.");
-                        } else {
+                        if (biletler[i][k] != null) {
                             System.out.println(musteriler[i] + " --> " + filmAdi[k]);
                         }
 
                     }
                 }
 
-            } else if (secim == 0) {
+            } else if (secim == 9) {
                 // Çıkış
                 System.out.println("Güle güle");
-                break;
-
             } else {
                 System.out.println("Geçersiz işlem.");
             }
